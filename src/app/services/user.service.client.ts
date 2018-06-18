@@ -23,7 +23,7 @@ export class UserServiceClient {
     return fetch('http://localhost:4000/api/login', {
       method: 'post',
       body: JSON.stringify(credentials),
-      credentials: 'same-origin',
+      credentials: 'include',
       headers: {
         'content-type': 'application/json'
       }
@@ -40,7 +40,7 @@ export class UserServiceClient {
   profile() {
     return fetch('http://localhost:4000/api/profile',
       {
-        credentials: 'same-origin'
+        credentials: 'include'
       })
       .then(response => response.json());
   }
@@ -52,7 +52,7 @@ export class UserServiceClient {
     };
     return fetch('http://localhost:4000/api/user', {
       body: JSON.stringify(user),
-      credentials: 'same-origin',
+      credentials: 'include',
       method: 'post',
       headers: {
         'content-type': 'application/json'
