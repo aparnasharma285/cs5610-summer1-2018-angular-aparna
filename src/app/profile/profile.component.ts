@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from "../models/user.model.client";
 import {UserServiceClient} from "../services/user.service.client";
 import {Router} from "@angular/router";
@@ -13,15 +13,21 @@ export class ProfileComponent implements OnInit {
 
   constructor(private service: UserServiceClient,
               private sectionService: SectionServiceClient,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   user = {};
+  loggedInUser = {};
   username;
   password;
+  email;
+  firstName;
+  lastName;
+  address;
+  phone;
   sections = [];
 
   update(user) {
-    console.log(user);
   }
 
   logout() {
@@ -35,12 +41,21 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.service
       .profile()
-      .then(user =>
-        this.username = user.username);
+      .then(user => {
+        this.username = user.username;
+        this.service.findUserById(user._id).then(loggedInUser => {
+        this.password = loggedInUser.password;
+        this.firstName = loggedInUser.firstName;
+        this.lastName = loggedInUser.lastName;
+        this.email = loggedInUser.email;
+        this.address = loggedInUser.address;
+        this.phone = loggedInUser.phone;
+        });
+      });
 
     this.sectionService
       .findSectionsForStudent()
-      .then(sections => this.sections = sections );
+      .then(sections => this.sections = sections);
   }
 
 }
