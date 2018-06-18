@@ -38,18 +38,23 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+  goBackHome() {
+    this.router.navigate(['home']);
+  }
+
   ngOnInit() {
     this.service
       .profile()
       .then(user => {
         this.username = user.username;
         this.service.findUserById(user._id).then(loggedInUser => {
-        this.password = loggedInUser.password;
-        this.firstName = loggedInUser.firstName;
-        this.lastName = loggedInUser.lastName;
-        this.email = loggedInUser.email;
-        this.address = loggedInUser.address;
-        this.phone = loggedInUser.phone;
+          this.password = loggedInUser.password;
+          this.firstName = loggedInUser.firstName;
+          this.lastName = loggedInUser.lastName;
+          this.email = loggedInUser.email;
+          this.address = loggedInUser.address;
+          this.phone = loggedInUser.phone;
         });
       });
 

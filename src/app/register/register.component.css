@@ -1,0 +1,26 @@
+.wbdv-registerForm {
+  margin: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.card-header {
+  color: #636363;
+  text-align: center;
+}
+
+.wbdv-hidden {
+  display: none;
+}
+.card{
+  border-width: thick;
+}
+
+.wbdv-register{
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
+
+.wbdv-home-link{
+  float: right;
+}

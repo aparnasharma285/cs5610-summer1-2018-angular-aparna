@@ -1,21 +1,30 @@
-<div class="container-fluid">
-  <h1>Register</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="card wbdv-registerForm col-md-6">
+      <h2 class="card-header">Register</h2>
+      <div class="card-body">
+        <label for="usernameFld" class="col-form-label">Username</label>
+        <input id="usernameFld" [(ngModel)]="username"
+               placeholder="Username"
+               class="form-control"/>
+        <label for="passwordFld" class="col-form-label">Password</label>
+        <input id="passwordFld" [(ngModel)]="password"
+               placeholder="Password"
+               class="form-control"/>
+        <label for="verifyPasswordFld" class="col-form-label">Confirm Password</label>
+        <input id="verifyPasswordFld" [(ngModel)]="password2"
+               placeholder="Confirm Password"
+               class="form-control"/>
+        <button (click)="register(username, password, password2)"
+                class="btn btn-primary btn-block wbdv-register">
+          Register
+        </button>
 
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
-  <input [(ngModel)]="password"
-         placeholder="password"
-         class="form-control"/>
-  <input [(ngModel)]="password2"
-         placeholder="verify password"
-         class="form-control"/>
-  <button (click)="register(username, password, password2)"
-          class="btn btn-primary btn-block">
-    Register
-  </button>
-
-  <a routerLink="/login">Login</a>
-  <a routerLink="/home">Home</a>
-
+        <a routerLink="/login">Login</a>
+        <a class="wbdv-home-link" routerLink="/home">Home</a>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
 </div>
