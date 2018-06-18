@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <h1>Profile</h1>
+
+  <input [(ngModel)]="username"
+         placeholder="username"
+         class="form-control"/>
+  <input [(ngModel)]="firstName"
+         placeholder="first name"
+         class="form-control"/>
+  <input [(ngModel)]="lastName"
+         placeholder="lastName"
+         class="form-control"/>
+  <input [(ngModel)]="email"
+         placeholder="email"
+         class="form-control"/>
+  <button (click)="update()"
+          class="btn btn-primary btn-block">
+    Update
+  </button>
+
+  <h2>Sections ({{sections.length}})</h2>
+
+  <ul class="list-group">
+    <li *ngFor="let enrollment of sections" class="list-group-item">
+      {{enrollment.section.name}}
+      ({{enrollment.section.seats}})
+    </li>
+  </ul>
+
+  <a (click)="logout()">Logout</a>
+  <a routerLink="/home">Home</a>
+
+</div>
