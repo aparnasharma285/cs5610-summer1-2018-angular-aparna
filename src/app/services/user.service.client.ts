@@ -11,7 +11,7 @@ export class UserServiceClient {
   }
 
   findAllUsers() {
-    return fetch('http://localhost:4000/api/user/')
+    return fetch('http://localhost:4000/api/user')
       .then(response => response.json());
   }
 
@@ -28,6 +28,20 @@ export class UserServiceClient {
         'content-type': 'application/json'
       }
     });
+  }
+
+
+  updateProfile(model) {
+    return fetch('http://localhost:4000/api/user', {
+      method: 'put',
+      body: JSON.stringify(model),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => (
+      response.json()
+    ));
   }
 
   logout() {

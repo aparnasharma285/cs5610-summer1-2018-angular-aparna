@@ -1,49 +1,50 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="card wbdv-profile col-md-6"><br>
+    <div class="card wbdv-profile col-md-7"><br>
       <h1> Profile
         <button (click)="goBackHome()" class="btn btn-primary wbdv-home-link"><i class="fa fa-chevron-left"></i> Back
           Home
         </button>
       </h1>
       <label class="control-label" for="usernameFld">Username</label>
-      <input id="usernameFld" [(ngModel)]="username"
+      <input id="usernameFld" [(ngModel)]="model.username"
              placeholder="Username"
              class="form-control" disabled=""/>
       <label class="control-label" for="passwordFld">Password</label>
-      <input id="passwordFld" [(ngModel)]="password"
+      <input id="passwordFld" [(ngModel)]="model.password"
              placeholder="Password"
              class="form-control"/>
       <label class="control-label" for="firstNameFld">First Name</label>
-      <input id="firstNameFld" [(ngModel)]="firstName"
+      <input id="firstNameFld" [(ngModel)]="model.firstName"
              placeholder="First Name"
              class="form-control"/>
       <label class="control-label" for="lastNameFld">Last Name</label>
-      <input id="lastNameFld" [(ngModel)]="lastName"
+      <input id="lastNameFld" [(ngModel)]="model.lastName"
              placeholder="Last Name"
              class="form-control"/>
       <label class="control-label" for="emailFld">Email</label>
-      <input id="emailFld" [(ngModel)]="email"
+      <input id="emailFld" [(ngModel)]="model.email"
              placeholder="Email"
              class="form-control"/>
       <label class="control-label" for="phoneFld">Phone</label>
-      <input id="phoneFld" [(ngModel)]="phone"
+      <input id="phoneFld" [(ngModel)]="model.phone"
              placeholder="Phone Number"
              class="form-control"/>
       <label class="control-label" for="addressFld">Address</label>
-      <input id="addressFld" [(ngModel)]="address"
+      <input id="addressFld" [(ngModel)]="model.address"
              placeholder="Address"
              class="form-control"/>
-      <button (click)="update()" class="btn btn-success btn-block wbdv-updateProfile">
+      <button (click)="update(model)" class="btn btn-success btn-block wbdv-updateProfile">
         <i class="fa fa-edit"> </i> Update
       </button>
 
       <button (click)="logout()" class="btn btn-danger wbdv-logout">
         <i class="fa fa-sign-out"></i> Logout
       </button>
-
-      <h2>Sections ({{sections.length}})</h2>
+    </div>
+    <div class="col-md-4 card wbdv-profile-section">
+      <h2>Sections Enrolled</h2>
+      <h5>Count : {{sections.length}}</h5>
 
       <ul class="list-group">
         <li *ngFor="let enrollment of sections" class="list-group-item">

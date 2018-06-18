@@ -15,19 +15,24 @@ export class ProfileComponent implements OnInit {
               private sectionService: SectionServiceClient,
               private router: Router) {
   }
-
-  user = {};
-  loggedInUser = {};
-  username;
-  password;
-  email;
-  firstName;
-  lastName;
-  address;
-  phone;
+  model= new User();
   sections = [];
 
-  update(user) {
+  update(model) {
+    this.service.updateProfile(model).then(user => {
+      if (user !== undefined) {
+      this.model.username = user.username;
+      this.model.password = user.password;
+      this.model.firstName = user.firstName;
+      this.model.lastName = user.lastName;
+      this.model.email = user.email;
+      this.model.address = user.address;
+      this.model.phone = user.phone;
+      alert("Profile updated successfully");
+    }else {
+        alert("Updation was unsuccessful");
+      }
+      });
   }
 
   logout() {
@@ -47,14 +52,14 @@ export class ProfileComponent implements OnInit {
     this.service
       .profile()
       .then(user => {
-        this.username = user.username;
+        this.model.username = user.username;
         this.service.findUserById(user._id).then(loggedInUser => {
-          this.password = loggedInUser.password;
-          this.firstName = loggedInUser.firstName;
-          this.lastName = loggedInUser.lastName;
-          this.email = loggedInUser.email;
-          this.address = loggedInUser.address;
-          this.phone = loggedInUser.phone;
+          this.model.password = loggedInUser.password;
+          this.model.firstName = loggedInUser.firstName;
+          this.model.lastName = loggedInUser.lastName;
+          this.model.email = loggedInUser.email;
+          this.model.address = loggedInUser.address;
+          this.model.phone = loggedInUser.phone;
         });
       });
 
