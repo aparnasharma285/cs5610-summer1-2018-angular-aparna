@@ -1,17 +1,20 @@
 <div class="container-fluid">
-  <h1>Login</h1>
-
-  <input [(ngModel)]="username"
-         placeholder="username"
-         class="form-control"/>
-  <input [(ngModel)]="password"
-         placeholder="password"
-         class="form-control"/>
-  <button (click)="login(username, password)"
-          class="btn btn-primary btn-block">
-    Login
-  </button>
-
-  <a routerLink="/register">Register</a>
-  <a routerLink="/home">Home</a>
+  <div class="col row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="card wbdv-loginForm">
+        <h2 class="card-header">Sign In</h2>
+        <div class="card-body">
+          <label for="usernameFld" class="col-form-label">Username</label>
+          <input id="usernameFld" [(ngModel)]="username" placeholder="Username" class="form-control"/>
+          <label for="passwordFld" class="col-form-label">Password</label>
+          <input id="passwordFld" [(ngModel)]="password" placeholder="Password" class="form-control"/>
+          <button (click)="login(username, password)" class="btn btn-primary btn-block wbdv-login">Login</button>
+          <a routerLink="/register">Register</a>
+          <a class="wbdv-home-link" routerLink="/home">Home</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
 </div>
