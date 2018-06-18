@@ -19,11 +19,16 @@ export class RegisterComponent implements OnInit {
 
   register(username, password, password2) {
     if (username.length > 0 && password.length > 0) {
-      if (password.equals(password2)) {
+      if (password === password2) {
         this.service
           .createUser(username, password)
-          .then(() =>
-            this.router.navigate(['profile']));
+          .then((response) => {
+            if (response.error === undefined) {
+            this.router.navigate(['profile']);
+          } else {
+            alert("Username Already exists");
+            }
+          });
       } else {
         alert("The passwords do not match");
       }

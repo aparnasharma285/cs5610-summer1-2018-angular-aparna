@@ -5,6 +5,16 @@ export class UserServiceClient {
       .then(response => response.json());
   }
 
+  findUserByUsername(username) {
+    return fetch('http://localhost:4000/api/user/' + username)
+      .then(response => response.json());
+  }
+
+  findAllUsers() {
+    return fetch('http://localhost:4000/api/user/')
+      .then(response => response.json());
+  }
+
   login(username, password) {
     const credentials = {
       username: username,
@@ -47,6 +57,9 @@ export class UserServiceClient {
       headers: {
         'content-type': 'application/json'
       }
-    });
+    }).then(response => (
+      response.json()
+    ));
   }
 }
+
