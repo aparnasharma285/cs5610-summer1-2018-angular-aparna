@@ -40,14 +40,16 @@ export class UserServiceClient {
         'content-type': 'application/json'
       }
     }).then(response => (
-      response.json()
-    ));
+      response
+    )).catch(error => {
+      alert("update error");
+    });
   }
 
   logout() {
     return fetch('http://localhost:4000/api/logout', {
       method: 'post',
-      credentials: 'same-origin'
+      credentials: 'include'
     });
   }
 
@@ -56,7 +58,9 @@ export class UserServiceClient {
       {
         credentials: 'include'
       })
-      .then(response => response.json());
+      .then(response => response.json())
+      .catch( error =>
+        alert("Please Login again to continue"));
   }
 
   createUser(username, password) {

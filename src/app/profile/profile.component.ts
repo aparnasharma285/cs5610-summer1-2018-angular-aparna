@@ -15,23 +15,14 @@ export class ProfileComponent implements OnInit {
               private sectionService: SectionServiceClient,
               private router: Router) {
   }
-  model= new User();
+
+  model = new User();
   sections = [];
 
   update(model) {
-    this.service.updateProfile(model).then(user => {
-      if (user !== undefined) {
-      this.model.username = user.username;
-      this.model.password = user.password;
-      this.model.firstName = user.firstName;
-      this.model.lastName = user.lastName;
-      this.model.email = user.email;
-      this.model.address = user.address;
-      this.model.phone = user.phone;
-      alert("Profile updated successfully");
-    }else {
-        alert("Updation was unsuccessful");
-      }
+    alert("Did hit");
+    this.service.updateProfile(model).then(response => {
+        alert("Profile updated successfully");
       });
   }
 
@@ -61,11 +52,9 @@ export class ProfileComponent implements OnInit {
           this.model.address = loggedInUser.address;
           this.model.phone = loggedInUser.phone;
         });
-      });
-
-    this.sectionService
-      .findSectionsForStudent()
-      .then(sections => this.sections = sections);
+      }).then(() => this.sectionService.findSectionsForStudent()
+      .then(sections => this.sections = sections))
+      .catch(error => {this.model = new User(); });
   }
 
 }
