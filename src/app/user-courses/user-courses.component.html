@@ -1,14 +1,36 @@
-<div class="row wbdv-user-courses-list">
-  <div *ngFor="let course of courses" class="col-sm-3">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{course.title}}</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="/course/{{course.id}}"
-           class="btn btn-primary">Go somewhere</a>
-        <a routerLink="/course/{{course.id}}/section"
-           class="btn btn-primary">Enroll</a>
+<div>
+  <div class="wbdv-enrolled-list">
+  <h2>Enrolled Courses</h2>
+  <div class="row wbdv-user-courses-list">
+    <div *ngFor="let course of courses" class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{course.title}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a routerLink="/course/{{course.id}}"
+             class="btn btn-primary">View Details</a>
+        </div>
       </div>
     </div>
   </div>
+  </div>
+
+  <div class="wbdv-available-list">
+  <h2>Available Courses</h2>
+  <div class="row wbdv-user-courses-list">
+    <div *ngFor="let course of availableCourses" class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{course.title}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a routerLink="/course/{{course.id}}"
+             class="btn btn-primary">View Details</a>
+          <a routerLink="/course/{{course.id}}/section"
+             class="btn btn-primary">Enroll</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 </div>
+

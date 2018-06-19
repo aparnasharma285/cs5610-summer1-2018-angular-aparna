@@ -4,13 +4,8 @@
     <app-course-grid></app-course-grid>
   </div>
   <div [hidden]="!isLoggedIn">
-    <div class="wbd-enrolled-courses-list">
-      <h2>Enrolled Courses</h2>
+    <div class="wbd-user-courses-list">
       <app-user-courses></app-user-courses>
-    </div>
-    <div class="wbdv-all-courses-list">
-      <h2>All Available Courses</h2>
-      <app-course-grid></app-course-grid>
     </div>
   </div>
 </div>

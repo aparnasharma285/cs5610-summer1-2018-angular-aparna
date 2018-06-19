@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserServiceClient} from "../services/user.service.client";
 import {Router} from "@angular/router";
 import {SectionServiceClient} from "../services/section.service.client";
@@ -13,21 +13,34 @@ export class UserCoursesComponent implements OnInit {
 
   constructor(private service: UserServiceClient,
               private sectionService: SectionServiceClient,
-              private courseService: CourseServiceClient) { }
+              private courseService: CourseServiceClient) {
+  }
 
   sections = [];
   courseIds = [];
   courses = [];
+  allcourses = [];
+  availableCourses = [];
 
   ngOnInit() {
     this.sectionService.findSectionsForStudent()
       .then(sections => this.sections = sections)
       .then(() => this.sections.map(item => {
         if (!this.courseIds.includes(item.section.courseId, 0)) {
-        this.courseIds.push(item.section.courseId); } }))
-      .then(() => this.courseIds.map(courseId => {
-        this.courseService.findCourseById(courseId)
-        .then(course => this.courses.push(course)); }));
-  }
+          this.courseIds.push(item.section.courseId);
+        }
+      }))
+      .then(() => this.courseService.findAllCourses())
+      .then(courses => this.allcourses = courses)
+      .then(() => this.allcourses.map(course => {
+        if (this.courseIds.includes(course.id, 0)) {
+          this.courses.push(course);
+        }}))
+      .then(() => {this.allcourses.map(course => {
+        if (!this.courseIds.includes(course.id, 0)) {
+          this.availableCourses.push(course);
+        }
+      }); });
 
+  }
 }
