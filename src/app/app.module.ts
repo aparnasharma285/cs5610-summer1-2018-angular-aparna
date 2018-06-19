@@ -24,6 +24,8 @@ import { SectionListComponent } from './section-list/section-list.component';
 import {SectionServiceClient} from "./services/section.service.client";
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { HeaderComponent } from './header/header.component';
+import { UserCoursesComponent } from './user-courses/user-courses.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { HeaderComponent } from './header/header.component';
     ProfileComponent,
     SectionListComponent,
     AdminPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserCoursesComponent
   ],
   imports: [
     BrowserModule,

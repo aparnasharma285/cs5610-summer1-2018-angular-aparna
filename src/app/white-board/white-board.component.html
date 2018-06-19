@@ -1,9 +1,16 @@
 <app-header></app-header>
 <div class="container-fluid">
   <div [hidden]="isLoggedIn">
-  <app-course-grid></app-course-grid>
+    <app-course-grid></app-course-grid>
   </div>
   <div [hidden]="!isLoggedIn">
-    LoggedIn View
+    <div class="wbd-enrolled-courses-list">
+      <h2>Enrolled Courses</h2>
+      <app-user-courses></app-user-courses>
+    </div>
+    <div class="wbdv-all-courses-list">
+      <h2>All Available Courses</h2>
+      <app-course-grid></app-course-grid>
+    </div>
   </div>
 </div>
