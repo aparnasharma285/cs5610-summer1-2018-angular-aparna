@@ -1,10 +1,9 @@
+<app-header></app-header>
 <div class="container-fluid">
-  <h1>
-    White Board
-  </h1>
-
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-
+  <div [hidden]="isLoggedIn">
   <app-course-grid></app-course-grid>
+  </div>
+  <div [hidden]="!isLoggedIn">
+    LoggedIn View
+  </div>
 </div>

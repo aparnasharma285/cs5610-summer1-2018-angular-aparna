@@ -79,5 +79,17 @@ export class UserServiceClient {
       response.json()
     ));
   }
+
+  checkLoginStatus() {
+    return fetch('http://localhost:4000/api/status',{
+      credentials: 'include'
+    }).then(response => {
+      if (response.status === 200) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
 }
 

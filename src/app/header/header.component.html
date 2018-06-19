@@ -1,3 +1,10 @@
-<p>
-  header works!
-</p>
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="/"><h3>WhiteBoard</h3></a>
+  <ul class="navbar-nav navbar-right">
+    <li class="nav-item">
+    <button [hidden]="!isLoggedIn" class="wbdv-logout-button btn btn-light" (click)="logout()">LogOut</button>
+    <button [hidden]="isLoggedIn" class="wbdv-login-button btn btn-light" routerLink="/login">LogIn</button>
+    <button [hidden]="isLoggedIn" class="wbdv-register-button btn btn-light" routerLink="/register">Register</button>
+    </li>
+  </ul>
+  </nav>

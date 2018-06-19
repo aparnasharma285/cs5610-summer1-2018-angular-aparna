@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserServiceClient} from "../services/user.service.client";
 
 @Component({
   selector: 'app-white-board',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WhiteBoardComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private service: UserServiceClient) {
   }
 
+  isLoggedIn = false;
+
+  ngOnInit() {
+    this.service.checkLoginStatus().then(loginStatus => {
+      this.isLoggedIn = loginStatus;
+    });
+  }
 }
+
