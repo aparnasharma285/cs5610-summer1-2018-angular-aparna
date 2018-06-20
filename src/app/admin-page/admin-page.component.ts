@@ -31,22 +31,30 @@ export class AdminPageComponent implements OnInit {
   previousMaxSeats: number;
 
   createCourse() {
-    this.courseService.createNewCourse(this.courses.length, this.blank_courseName)
-      .then(() => this.courseService.findAllCourses())
-      .then(courses => this.courses = courses)
-      .then(() => {
-        this.blank_courseName = '';
-      });
+    if (this.blank_courseName.length < 1 || this.blank_courseName === undefined) {
+      alert("Empty Course cannot be created");
+    } else {
+      this.courseService.createNewCourse(this.courses.length, this.blank_courseName)
+        .then(() => this.courseService.findAllCourses())
+        .then(courses => this.courses = courses)
+        .then(() => {
+          this.blank_courseName = '';
+        });
+    }
   }
 
   updateCourse() {
-    this.courseService.updateCourse(this.blank_courseId, this.blank_courseName)
-      .then(() => this.courseService.findAllCourses())
-      .then(courses => this.courses = courses)
-      .then(() => {
-        this.blank_courseId = '';
-        this.blank_courseName = '';
-      });
+    if (this.blank_courseName.length < 1 || this.blank_courseName === undefined) {
+      alert("Empty Course Name is not valid");
+    } else {
+      this.courseService.updateCourse(this.blank_courseId, this.blank_courseName)
+        .then(() => this.courseService.findAllCourses())
+        .then(courses => this.courses = courses)
+        .then(() => {
+          this.blank_courseId = '';
+          this.blank_courseName = '';
+        });
+    }
   }
 
   goBackHome() {
@@ -78,27 +86,39 @@ export class AdminPageComponent implements OnInit {
   }
 
   createNewSection() {
-    this.sectionService.createSection(this.currentCourseId, this.blank_sectionName, this.blank_sectionSeat)
-      .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
-      .then(sections => this.sections = sections)
-      .then(() => {
-        this.blank_sectionName = '';
-        this.blank_sectionSeat = 0;
-      });
+    if (this.blank_sectionName.length < 1 || this.blank_sectionName === undefined) {
+      alert("Section Name is required");
+    } else if (this.blank_sectionSeat === undefined || this.blank_sectionSeat === 0) {
+      alert("Max seat can not be zero");
+    } else {
+      this.sectionService.createSection(this.currentCourseId, this.blank_sectionName, this.blank_sectionSeat)
+        .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
+        .then(sections => this.sections = sections)
+        .then(() => {
+          this.blank_sectionName = '';
+          this.blank_sectionSeat = 0;
+        });
+    }
   }
 
   updateSection() {
-    this.sectionService.updateSection(this.currentCourseId, this.blank_sectionId,
-      this.blank_sectionName, (this.blank_sectionSeat - (this.previousMaxSeats - this.previousAvailableSeats)), this.blank_sectionSeat)
-      .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
-      .then(sections => this.sections = sections)
-      .then(() => {
-        this.blank_sectionId = '';
-        this.blank_sectionName = '';
-        this.blank_sectionSeat = 0;
-        this.previousAvailableSeats = 0;
-        this.previousMaxSeats = 0;
-      });
+    if (this.blank_sectionName.length < 1 || this.blank_sectionName === undefined) {
+      alert("Section Name is required");
+    } else if (this.blank_sectionSeat === undefined ) {
+      alert("Max seat can not be empty");
+    } else {
+      this.sectionService.updateSection(this.currentCourseId, this.blank_sectionId,
+        this.blank_sectionName, (this.blank_sectionSeat - (this.previousMaxSeats - this.previousAvailableSeats)), this.blank_sectionSeat)
+        .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
+        .then(sections => this.sections = sections)
+        .then(() => {
+          this.blank_sectionId = '';
+          this.blank_sectionName = '';
+          this.blank_sectionSeat = 0;
+          this.previousAvailableSeats = 0;
+          this.previousMaxSeats = 0;
+        });
+    }
   }
 
 
