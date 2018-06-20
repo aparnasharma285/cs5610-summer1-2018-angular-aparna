@@ -26,6 +26,7 @@ export class AdminPageComponent implements OnInit {
   blank_sectionName = '';
   blank_sectionSeat = '';
   currentCourseId = '';
+  isAdmin = false;
 
   createCourse() {
     this.courseService.createNewCourse(this.courses.length, this.blank_courseName)
@@ -99,8 +100,15 @@ export class AdminPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courseService.findAllCourses()
-      .then(courses => this.courses = courses);
+    this.service.profile()
+      .then(user => {
+        if ((user.username).toUpperCase() === "ADMIN") {
+        this.isAdmin = true; }
+      }).then(() => {
+        if (this.isAdmin) {
+          this.courseService.findAllCourses()
+            .then(courses => this.courses = courses);
+        }
+    });
   }
-
 }

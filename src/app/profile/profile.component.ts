@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
       .profile()
       .then(user => {
         this.model.username = user.username;
-        if (this.model.username === "Admin") {
+        if ((this.model.username).toUpperCase() === "ADMIN") {
           this.isAdmin = true;
         }
         this.service.findUserById(user._id).then(loggedInUser => {
