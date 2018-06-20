@@ -51,6 +51,17 @@ export class AdminPageComponent implements OnInit {
     this.sectionService.findSectionsForCourse(courseId).then(sections => this.sections = sections);
   }
 
+  updateCurrentCourse(courseId, courseTitle) {
+    this.courseid = courseId;
+    this.courseName = courseTitle;
+  }
+
+  deleteCourse(courseId) {
+this.courseService.deleteCourse(courseId)
+  .then(() => this.courseService.findAllCourses())
+  .then(courses => this.courses = courses);
+  }
+
   ngOnInit() {
     this.courseService.findAllCourses()
       .then(courses => this.courses = courses);

@@ -12,7 +12,6 @@
         <ul class="list-group">
           <li class="list-group-item wbdv-title"><h3>Courses</h3></li>
           <li class="list-group-item">
-            <input [(ngModel)]="courseid" [(value)]="courseid" placeholder="Course Id" class="form-control" hidden=true/>
             <div class="row">
             <input [(ngModel)]="courseName" [(value)]="courseName" placeholder="Course Name" class="form-control"/>
             <button (click)="createCourse()" class="btn btn-success wbdv-create-course wbdv-right-element">
@@ -23,9 +22,9 @@
           </li>
           <li (click)="getSections(course.id)" class="list-group-item" *ngFor="let course of courses">
            {{course.title}}
-            <button class="btn btn-success wbdv-update-course wbdv-right-element">
+            <button (click)="updateCurrentCourse(course.id,course.title)"class="btn btn-success wbdv-update-course wbdv-right-element">
               <i class="fa fa-edit"> </i></button>
-            <button class="btn btn-danger wbdv-delete-course wbdv-right-element">
+            <button (click)="deleteCourse(course.id)"class="btn btn-danger wbdv-delete-course wbdv-right-element">
               <i class="fa fa-trash"> </i></button></li>
         </ul>
     </div>

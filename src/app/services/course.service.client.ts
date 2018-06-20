@@ -20,7 +20,7 @@ export class CourseServiceClient {
     });
   }
   updateCourse(courseId, courseName) {
-    const course = {courseId, courseName};
+    const course = {'id': courseId, 'title': courseName};
     return fetch(this.COURSE_URL, {
       method: 'put',
       body: JSON.stringify(course),
@@ -28,6 +28,13 @@ export class CourseServiceClient {
       headers: {
         'content-type': 'application/json'
       }
+    });
+  }
+
+  deleteCourse(courseId) {
+    return fetch(this.COURSE_URL + '/' + courseId, {
+      method: 'delete',
+      credentials: 'include',
     });
   }
 }
