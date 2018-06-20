@@ -41,21 +41,29 @@ export class SectionListComponent implements OnInit {
   }
 
   isEnrolled(sectionId) {
-    this.enrolledStatus = false;
-    this.enrolledSections.map(section => {
-      if (section._id === sectionId) {
-        this.enrolledStatus = true;
-      }
-    });
+    if (this.enrolledSections !== undefined && this.enrolledSections.length > 0) {
+      this.enrolledStatus = false;
+      this.enrolledSections.map(item => {
+        if (item.section._id === sectionId) {
+          this.enrolledStatus = true;
+        }
+      });
+    }
+
     return this.enrolledStatus;
   }
 
   isFull(sectionMaxSeats, seactionSeats) {
-    if (sectionMaxSeats - seactionSeats === 0) {
+    if (seactionSeats === 0) {
       return true;
     } else {
       return false;
     }
+  }
+
+  unenroll(sectionId) {
+    this.sectionService.unenrollStudentInSection(sectionId)
+      .then(() => window.location.reload());
   }
 
   ngOnInit() {

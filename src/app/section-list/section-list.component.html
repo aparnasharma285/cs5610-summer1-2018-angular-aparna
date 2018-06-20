@@ -4,7 +4,9 @@
   <ul class="list-group">
     <li *ngFor="let section of sections" class="list-group-item">
       {{section.name}} {{section.seats}}
-      <button *ngIf="!isEnrolled(section._id) && !isFull(section.maxSeats, section.seats)" (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
+      <button *ngIf="!isEnrolled(section._id) && !isFull(section.maxSeats, section.seats)"
+              (click)="enroll(section)" class="float-right btn btn-primary">Enroll</button>
+      <button *ngIf="isEnrolled(section._id)" (click)="unenroll(section._id)" class="float-right btn btn-primary">Unenroll</button>
     </li>
   </ul>
 
