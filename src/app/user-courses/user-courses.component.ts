@@ -21,8 +21,14 @@ export class UserCoursesComponent implements OnInit {
   courses = [];
   allcourses = [];
   availableCourses = [];
+  isLoggedIn = false;
 
   ngOnInit() {
+    this.service.checkLoginStatus().then(loginStatus => {
+      this.isLoggedIn = loginStatus;
+    })
+      .then(() => {
+    if (this.isLoggedIn) {
     this.sectionService.findSectionsForStudent()
       .then(sections => this.sections = sections)
       .then(() => this.sections.map(item => {
@@ -40,7 +46,7 @@ export class UserCoursesComponent implements OnInit {
         if (!this.courseIds.includes(course.id, 0)) {
           this.availableCourses.push(course);
         }
-      }); });
+      }); }); }});
 
   }
 }
