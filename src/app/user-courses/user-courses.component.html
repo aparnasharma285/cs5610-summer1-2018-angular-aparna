@@ -1,6 +1,7 @@
 <div>
   <div class="wbdv-enrolled-list">
   <h2>Enrolled Courses</h2>
+    <div class="wbdv-no-enrolled-courses" *ngIf="courses.length < 1"><h5>No Enrolled Courses</h5></div>
   <div class="row wbdv-user-courses-list">
     <div *ngFor="let course of courses" class="col-sm-3">
       <div class="card">
