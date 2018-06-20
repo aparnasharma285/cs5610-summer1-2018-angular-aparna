@@ -22,9 +22,9 @@ export class ProfileComponent implements OnInit {
   sections = [];
   courses = [];
   courseIds = [];
+  isAdmin = false;
 
   update(model) {
-    alert("Did hit");
     this.service.updateProfile(model).then(response => {
         alert("Profile updated successfully");
       });
@@ -48,6 +48,9 @@ export class ProfileComponent implements OnInit {
       .profile()
       .then(user => {
         this.model.username = user.username;
+        if (this.model.username === "Admin") {
+          this.isAdmin = true;
+        }
         this.service.findUserById(user._id).then(loggedInUser => {
           this.model.password = loggedInUser.password;
           this.model.firstName = loggedInUser.firstName;

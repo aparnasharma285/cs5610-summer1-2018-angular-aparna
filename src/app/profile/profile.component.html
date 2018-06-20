@@ -5,6 +5,7 @@
         <button (click)="goBackHome()" class="btn btn-primary wbdv-home-link"><i class="fa fa-chevron-left"></i> Back
           Home
         </button>
+        <button routerLink="/profile/adminpage" class="btn btn-primary wbdv-admin-page-btn"> Admin Console</button>
       </h1>
       <label class="control-label" for="usernameFld">Username</label>
       <input id="usernameFld" [(ngModel)]="model.username"
@@ -46,14 +47,14 @@
       <h3 class="wbdv-heading">Sections Enrolled <div class="wbdv-right-element">Count : {{sections.length}}</div></h3>
       <ul class="list-group">
         <li *ngFor="let enrollment of sections" class="list-group-item">
-          {{enrollment.section.name}}
+          <a routerLink="/course/{{enrollment.section.courseId}}/section">{{enrollment.section.name}}</a>
         </li>
       </ul>
 
       <h3 class="wbdv-heading">Courses Enrolled <div class="wbdv-right-element">Count : {{courses.length}}</div></h3>
       <ul class="list-group">
         <li *ngFor="let course of courses" class="list-group-item">
-          {{course.title}}
+          <a routerLink="/course/{{course.id}}">{{course.title}}</a>
         </li>
       </ul>
     </div>
