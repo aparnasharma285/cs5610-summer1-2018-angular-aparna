@@ -2,34 +2,53 @@
 <div class="container-fluid wbdv-admin-page">
   <h1>
     Welcome To Admin Page
+    <button (click)="goBackHome()" class="btn btn-primary wbdv-home-link wbdv-right-element"><i
+      class="fa fa-chevron-left"></i>
+      Back Home
+    </button>
   </h1>
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-  <div class="col row">
-    <div class="col-md-6">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>Course Id</th>
-          <th>Course Name</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let course of courses" class="wbdv-admin-course-list">
-          <td>{{course.id}}</td>
-          <td><a routerLink="/course/{{course.id}}">{{course.title}}</a></td>
-          <td>
-            <button class="btn btn-success wbdv-update-course">
-            <i class="fa fa-edit"> </i></button>
-            <button class="btn btn-danger wbdv-delete-course">
-              <i class="fa fa-trash"> </i> Delete </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="col row wbdv-details">
+    <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item wbdv-title"><h3>Courses</h3></li>
+          <li (click)="getSections(course.id)" class="list-group-item" *ngFor="let course of courses">
+           {{course.title}}
+            <button data-toggle="modal" data-target="#updateCourseNameModal" class="btn btn-success wbdv-update-course wbdv-right-element">
+              <i class="fa fa-edit"> </i></button>
+            <button class="btn btn-danger wbdv-delete-course wbdv-right-element">
+              <i class="fa fa-trash"> </i></button></li>
+        </ul>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <ul *ngIf="sections.length" class="list-group">
+      <li class="list-group-item wbdv-title"><h3>Sections</h3></li>
+      <li class="list-group-item" *ngFor="let section of sections">
+        {{section.name}}
+        <button class="btn btn-success wbdv-update-course wbdv-right-element">
+          <i class="fa fa-edit"> </i></button>
+        <button class="btn btn-danger wbdv-delete-course wbdv-right-element">
+          <i class="fa fa-trash"> </i></button></li>
+    </ul></div>
+  </div>
+  <div class="modal fade" id="updateCourseNameModal" tabindex="-1" role="dialog" aria-labelledby="updateCourseNameModal"
+       aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="updateCourseModalHeadingFld">Update Course Name</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="courseNameFld"><h5>Course Name</h5></label>
+          <input type="text" id="courseNameFld" placeholder="Enter new course name" class="form-control" width="100%">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Update Course</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

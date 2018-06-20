@@ -6,3 +6,12 @@
 .wbdv-admin-page{
   margin-top: 7%;
 }
+.wbdv-right-element{
+  float: right;
+}
+.wbdv-title{
+  text-align: center;
+}
+.wbdv-details{
+  margin-top: 5%;
+}

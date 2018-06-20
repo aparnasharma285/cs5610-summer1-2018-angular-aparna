@@ -1,9 +1,9 @@
 <app-header></app-header>
 <div class="container-fluid wbdv-home">
-  <div [hidden]="isLoggedIn">
+  <div *ngIf="!isLoggedIn">
     <app-course-grid></app-course-grid>
   </div>
-  <div [hidden]="!isLoggedIn">
+  <div *ngIf="isLoggedIn">
     <div class="wbd-user-courses-list">
       <app-user-courses></app-user-courses>
     </div>

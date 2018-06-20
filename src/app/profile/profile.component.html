@@ -5,7 +5,7 @@
         <button (click)="goBackHome()" class="btn btn-primary wbdv-home-link"><i class="fa fa-chevron-left"></i> Back
           Home
         </button>
-        <button [hidden]="!isAdmin" routerLink="/profile/adminpage" class="btn btn-primary wbdv-admin-page-btn"> Admin Console</button>
+        <button *ngIf="isAdmin" routerLink="/profile/adminpage" class="btn btn-primary wbdv-admin-page-btn"> Admin Console</button>
       </h1>
       <label class="control-label" for="usernameFld">Username</label>
       <input id="usernameFld" [(ngModel)]="model.username"

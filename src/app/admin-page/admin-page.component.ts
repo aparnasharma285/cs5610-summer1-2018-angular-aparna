@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Course} from "../models/coruse.model.client";
 import {CourseServiceClient} from "../services/course.service.client";
+import {Router} from "@angular/router";
+import {UserServiceClient} from "../services/user.service.client";
+import {SectionServiceClient} from "../services/section.service.client";
 
 @Component({
   selector: 'app-admin-page',
@@ -9,11 +12,21 @@ import {CourseServiceClient} from "../services/course.service.client";
 })
 export class AdminPageComponent implements OnInit {
 
-  constructor(private courseService: CourseServiceClient) { }
+  constructor(private service: UserServiceClient,
+              private sectionService: SectionServiceClient,
+              private courseService: CourseServiceClient,
+              private router: Router) { }
 
   courses: Course[] = [];
+  sections = [];
   selected = '';
 
+  goBackHome() {
+    this.router.navigate(['home']);
+  }
+  getSections(courseId) {
+    this.sectionService.findSectionsForCourse(courseId).then(sections => this.sections = sections);
+  }
   ngOnInit() {
     this.courseService.findAllCourses()
       .then(courses => this.courses = courses);
