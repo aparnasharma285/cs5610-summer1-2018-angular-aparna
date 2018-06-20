@@ -4,7 +4,7 @@
 }
 
 .wbdv-admin-page{
-  margin-top: 7%;
+  margin-top: 90px;
 }
 .wbdv-right-element{
   float: right;
@@ -14,4 +14,7 @@
 }
 .wbdv-details{
   margin-top: 5%;
+}
+.form-control{
+  width: 70%;
 }

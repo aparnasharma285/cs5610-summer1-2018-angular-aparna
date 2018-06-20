@@ -8,18 +8,28 @@
     </button>
   </h1>
   <div class="col row wbdv-details">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <ul class="list-group">
           <li class="list-group-item wbdv-title"><h3>Courses</h3></li>
+          <li class="list-group-item">
+            <input [(ngModel)]="courseid" [(value)]="courseid" placeholder="Course Id" class="form-control" hidden=true/>
+            <div class="row">
+            <input [(ngModel)]="courseName" [(value)]="courseName" placeholder="Course Name" class="form-control"/>
+            <button (click)="createCourse()" class="btn btn-success wbdv-create-course wbdv-right-element">
+              <i class="fa fa-plus"> </i></button>
+              <button (click)="updateCourse()" class="btn btn-success wbdv-update-course wbdv-right-element">
+                <i class="fa fa-edit"> </i></button>
+            </div>
+          </li>
           <li (click)="getSections(course.id)" class="list-group-item" *ngFor="let course of courses">
            {{course.title}}
-            <button data-toggle="modal" data-target="#updateCourseNameModal" class="btn btn-success wbdv-update-course wbdv-right-element">
+            <button class="btn btn-success wbdv-update-course wbdv-right-element">
               <i class="fa fa-edit"> </i></button>
             <button class="btn btn-danger wbdv-delete-course wbdv-right-element">
               <i class="fa fa-trash"> </i></button></li>
         </ul>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <ul *ngIf="sections.length" class="list-group">
       <li class="list-group-item wbdv-title"><h3>Sections</h3></li>
       <li class="list-group-item" *ngFor="let section of sections">
@@ -29,26 +39,6 @@
         <button class="btn btn-danger wbdv-delete-course wbdv-right-element">
           <i class="fa fa-trash"> </i></button></li>
     </ul></div>
-  </div>
-  <div class="modal fade" id="updateCourseNameModal" tabindex="-1" role="dialog" aria-labelledby="updateCourseNameModal"
-       aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="updateCourseModalHeadingFld">Update Course Name</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <label for="courseNameFld"><h5>Course Name</h5></label>
-          <input type="text" id="courseNameFld" placeholder="Enter new course name" class="form-control" width="100%">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Update Course</button>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
