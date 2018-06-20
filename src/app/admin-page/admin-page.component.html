@@ -13,7 +13,7 @@
           <li class="list-group-item wbdv-title"><h3>Courses</h3></li>
           <li class="list-group-item">
             <div class="row">
-            <input [(ngModel)]="courseName" [(value)]="courseName" placeholder="Course Name" class="form-control"/>
+            <input [(ngModel)]="blank_courseName" [(value)]="blank_courseName" placeholder="Course Name" class="form-control"/>
             <button (click)="createCourse()" class="btn btn-success wbdv-create-course wbdv-right-element">
               <i class="fa fa-plus"> </i></button>
               <button (click)="updateCourse()" class="btn btn-success wbdv-update-course wbdv-right-element">
@@ -30,12 +30,23 @@
     </div>
     <div class="col-md-6">
       <ul *ngIf="sections.length" class="list-group">
+        <li class="list-group-item">
+        <div class="row">
+          <input [(ngModel)]="blank_sectionName" [(value)]="blank_sectionName" placeholder="Section Name" class="form-control"/>
+          <input [(ngModel)]="blank_sectionSeat" [(value)]="blank_sectionSeat" placeholder="Max Seats" class="form-control"/>
+          <button (click)="createNewSection()" class="btn btn-success wbdv-create-course wbdv-right-element">
+            <i class="fa fa-plus"> </i></button>
+          <button (click)="updateSection()" class="btn btn-success wbdv-update-course wbdv-right-element">
+            <i class="fa fa-edit"> </i></button>
+        </div>
+        </li>
       <li class="list-group-item wbdv-title"><h3>Sections</h3></li>
       <li class="list-group-item" *ngFor="let section of sections">
-        {{section.name}}
-        <button class="btn btn-success wbdv-update-course wbdv-right-element">
+        <h5>Section Name :</h5> {{section.name}}
+        <br>Max Seats : {{section.seats}}
+        <button (click)="updateSectionCall(section._id, section.name, section.seats)" class="btn btn-success wbdv-update-course wbdv-right-element">
           <i class="fa fa-edit"> </i></button>
-        <button class="btn btn-danger wbdv-delete-course wbdv-right-element">
+        <button (click)="deleteSection(section._id)" class="btn btn-danger wbdv-delete-course wbdv-right-element">
           <i class="fa fa-trash"> </i></button></li>
     </ul></div>
   </div>

@@ -34,4 +34,23 @@ export class SectionServiceClient {
       }
     });
   }
+
+  updateSection(courseId, sectionId, name, seats) {
+    const section = {'_id': sectionId, name, seats};
+    return fetch(this.SECTION_URL.replace('COURSEID', courseId) + '/' + sectionId, {
+      method: 'put',
+      body: JSON.stringify(section),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+  }
+
+  deleteSection(courseId, sectionId) {
+    return fetch(this.SECTION_URL.replace('COURSEID', courseId) + '/' + sectionId, {
+      method: 'delete',
+      credentials: 'include',
+    });
+  }
 }

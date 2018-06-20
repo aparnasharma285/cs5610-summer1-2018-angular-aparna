@@ -20,26 +20,29 @@ export class AdminPageComponent implements OnInit {
 
   courses: Course[] = [];
   sections = [];
-  selected = '';
-  courseid = '';
-  courseName = '';
+  blank_courseId = '';
+  blank_courseName = '';
+  blank_sectionId = '';
+  blank_sectionName = '';
+  blank_sectionSeat = '';
+  currentCourseId = '';
 
   createCourse() {
-    this.courseService.createNewCourse(this.courses.length, this.courseName)
+    this.courseService.createNewCourse(this.courses.length, this.blank_courseName)
       .then(() => this.courseService.findAllCourses())
       .then(courses => this.courses = courses)
       .then(() => {
-        this.courseName = '';
+        this.blank_courseName = '';
       });
   }
 
   updateCourse() {
-    this.courseService.updateCourse(this.courseid, this.courseName)
+    this.courseService.updateCourse(this.blank_courseId, this.blank_courseName)
       .then(() => this.courseService.findAllCourses())
       .then(courses => this.courses = courses)
       .then(() => {
-        this.courseid = '';
-        this.courseName = '';
+        this.blank_courseId = '';
+        this.blank_courseName = '';
       });
   }
 
@@ -48,18 +51,51 @@ export class AdminPageComponent implements OnInit {
   }
 
   getSections(courseId) {
+    this.currentCourseId = courseId;
     this.sectionService.findSectionsForCourse(courseId).then(sections => this.sections = sections);
   }
 
   updateCurrentCourse(courseId, courseTitle) {
-    this.courseid = courseId;
-    this.courseName = courseTitle;
+    this.blank_courseId = courseId;
+    this.blank_courseName = courseTitle;
+  }
+
+  updateSectionCall(sectionId, sectionName, sectionSeats) {
+    this.blank_sectionName = sectionName;
+    this.blank_sectionId = sectionId;
+    this.blank_sectionSeat = sectionSeats;
   }
 
   deleteCourse(courseId) {
-this.courseService.deleteCourse(courseId)
-  .then(() => this.courseService.findAllCourses())
-  .then(courses => this.courses = courses);
+    this.courseService.deleteCourse(courseId)
+      .then(() => this.courseService.findAllCourses())
+      .then(courses => this.courses = courses);
+  }
+
+  createNewSection() {
+    this.sectionService.createSection(this.currentCourseId, this.blank_sectionName, this.blank_sectionSeat)
+      .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
+      .then(sections => this.sections = sections)
+      .then(() => {
+        this.blank_sectionName = '';
+        this.blank_sectionSeat = ''; });
+  }
+
+  updateSection() {
+    this.sectionService.updateSection(this.currentCourseId, this.blank_sectionId, this.blank_sectionName, this.blank_sectionSeat)
+      .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
+      .then(sections => this.sections = sections)
+      .then(() => {
+        this.blank_sectionId = '';
+      this.blank_sectionName = '';
+      this.blank_sectionSeat = ''; });
+  }
+
+
+  deleteSection(sectionId) {
+    this.sectionService.deleteSection(this.currentCourseId, sectionId)
+      .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
+      .then(sections => this.sections = sections);
   }
 
   ngOnInit() {
