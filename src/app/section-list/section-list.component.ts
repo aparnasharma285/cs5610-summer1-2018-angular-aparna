@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SectionServiceClient} from "../services/section.service.client";
 import {CourseServiceClient} from "../services/course.service.client";
@@ -19,17 +19,20 @@ export class SectionListComponent implements OnInit {
               private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.loadSections(params['courseId']));
   }
+
   seats = '';
   courseId = '';
   course = new Course();
   sections = [];
   enrolledSections = [];
   enrolledStatus = false;
+
   loadSections(courseId) {
     this.courseId = courseId;
     this.sectionService.findSectionsForCourse(courseId)
       .then(sections => this.sections = sections);
   }
+
   enroll(section) {
     this.sectionService.enrollStudentInSection(section._id)
       .then(() => {
@@ -47,17 +50,22 @@ export class SectionListComponent implements OnInit {
     return this.enrolledStatus;
   }
 
-  isFull() {
-    return false;
+  isFull(sectionMaxSeats, seactionSeats) {
+    if (sectionMaxSeats - seactionSeats === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   ngOnInit() {
     this.userService.checkLoginStatus()
       .then(isLoggedIn => {
         if (isLoggedIn) {
-        this.sectionService.findSectionsForStudent()
-          .then(sections => this.enrolledSections = sections); }
-      })
+          this.sectionService.findSectionsForStudent()
+            .then(sections => this.enrolledSections = sections);
+        }
+      });
     this.courseService.findCourseById(this.courseId)
       .then(course => this.course = course);
   }

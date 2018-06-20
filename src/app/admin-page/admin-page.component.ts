@@ -24,7 +24,7 @@ export class AdminPageComponent implements OnInit {
   blank_courseName = '';
   blank_sectionId = '';
   blank_sectionName = '';
-  blank_sectionSeat = '';
+  blank_sectionSeat: number;
   currentCourseId = '';
   isAdmin = false;
   previousAvailableSeats: number;
@@ -69,12 +69,6 @@ export class AdminPageComponent implements OnInit {
     this.blank_sectionSeat = sectionMaxSeats;
     this.previousAvailableSeats = sectionAvailableSeats;
     this.previousMaxSeats = sectionMaxSeats;
-    if (this.previousAvailableSeats === undefined) {
-      this.previousAvailableSeats = 0;
-    }
-    if (this.previousMaxSeats === undefined) {
-      this.previousMaxSeats = 0;
-    }
   }
 
   deleteCourse(courseId) {
@@ -89,19 +83,19 @@ export class AdminPageComponent implements OnInit {
       .then(sections => this.sections = sections)
       .then(() => {
         this.blank_sectionName = '';
-        this.blank_sectionSeat = '';
+        this.blank_sectionSeat = 0;
       });
   }
 
   updateSection() {
     this.sectionService.updateSection(this.currentCourseId, this.blank_sectionId,
-      this.blank_sectionName, (this.previousMaxSeats - this.previousAvailableSeats), this.blank_sectionSeat)
+      this.blank_sectionName, (this.blank_sectionSeat - (this.previousMaxSeats - this.previousAvailableSeats)), this.blank_sectionSeat)
       .then(() => this.sectionService.findSectionsForCourse(this.currentCourseId))
       .then(sections => this.sections = sections)
       .then(() => {
         this.blank_sectionId = '';
         this.blank_sectionName = '';
-        this.blank_sectionSeat = '';
+        this.blank_sectionSeat = 0;
         this.previousAvailableSeats = 0;
         this.previousMaxSeats = 0;
       });
