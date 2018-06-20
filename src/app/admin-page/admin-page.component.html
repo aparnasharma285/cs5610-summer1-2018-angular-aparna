@@ -44,8 +44,9 @@
         </li>
       <li class="list-group-item" *ngFor="let section of sections">
         <b>Section Name :</b> {{section.name}}
-        <br><b>Max Seats : </b>{{section.seats}}
-        <button (click)="updateSectionCall(section._id, section.name, section.seats)" class="btn btn-success wbdv-update-course wbdv-right-element">
+        <br><b>Available Seats : </b>{{section.seats}}
+        <br><b>Max Seats : </b>{{section.maxSeats}}
+        <button (click)="updateSectionCall(section._id, section.name, section.maxSeats, section.seats)" class="btn btn-success wbdv-update-course wbdv-right-element">
           <i class="fa fa-edit"> </i></button>
         <button (click)="deleteSection(section._id)" class="btn btn-danger wbdv-delete-course wbdv-right-element">
           <i class="fa fa-trash"> </i></button></li>

@@ -24,7 +24,7 @@ export class SectionServiceClient {
   }
 
   createSection(courseId, name, seats) {
-    const section = {courseId, name, seats};
+    const section = {courseId, name, seats, 'maxSeats': seats };
     return fetch(this.SECTION_URL.replace('COURSEID', courseId), {
       method: 'post',
       body: JSON.stringify(section),
@@ -35,8 +35,8 @@ export class SectionServiceClient {
     });
   }
 
-  updateSection(courseId, sectionId, name, seats) {
-    const section = {'_id': sectionId, name, seats};
+  updateSection(courseId, sectionId, name, seats, maxSeats) {
+    const section = {'_id': sectionId, name, seats, maxSeats};
     return fetch(this.SECTION_URL.replace('COURSEID', courseId) + '/' + sectionId, {
       method: 'put',
       body: JSON.stringify(section),
