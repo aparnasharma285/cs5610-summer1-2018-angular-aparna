@@ -24,4 +24,14 @@
   margin-left: 2%;
   margin-right: 2%;
   padding-top: 1%;
+  background-color: #e9ecef;
+}
+
+.wbdv-right-element {
+  float: right;
+}
+
+.wbdv-heading{
+  margin-top: 4%;
+  margin-bottom: 4%;
 }

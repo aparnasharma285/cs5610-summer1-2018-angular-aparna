@@ -43,19 +43,14 @@
       </button>
     </div>
     <div class="col-md-4 card wbdv-profile-section">
-      <h2>Sections Enrolled</h2>
-      <h5>Count : {{sections.length}}</h5>
-
+      <h3 class="wbdv-heading">Sections Enrolled <div class="wbdv-right-element">Count : {{sections.length}}</div></h3>
       <ul class="list-group">
         <li *ngFor="let enrollment of sections" class="list-group-item">
           {{enrollment.section.name}}
-          ({{enrollment.section.seats}})
         </li>
       </ul>
 
-      <h2>Courses Enrolled</h2>
-      <h5>Count : {{courses.length}}</h5>
-
+      <h3 class="wbdv-heading">Courses Enrolled <div class="wbdv-right-element">Count : {{courses.length}}</div></h3>
       <ul class="list-group">
         <li *ngFor="let course of courses" class="list-group-item">
           {{course.title}}
