@@ -20,7 +20,7 @@
                 <i class="fa fa-edit"> </i></button>
             </div>
           </li>
-          <li (click)="getSections(course.id)" class="list-group-item" *ngFor="let course of courses">
+          <li (click)="getSections(course.id)" class="list-group-item" [ngClass]="{'active':course.id == currentCourseId}" *ngFor="let course of courses">
            {{course.title}}
             <button (click)="updateCurrentCourse(course.id,course.title)"class="btn btn-success wbdv-update-course wbdv-right-element">
               <i class="fa fa-edit"> </i></button>
