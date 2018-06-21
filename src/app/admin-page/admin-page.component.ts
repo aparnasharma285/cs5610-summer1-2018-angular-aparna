@@ -86,7 +86,9 @@ export class AdminPageComponent implements OnInit {
   }
 
   createNewSection() {
-    if (this.blank_sectionName.length < 1 || this.blank_sectionName === undefined) {
+    if (this.currentCourseId === '') {
+      alert ("Please select a Course to add section");
+    } else if (this.blank_sectionName.length < 1 || this.blank_sectionName === undefined) {
       alert("Section Name is required");
     } else if (this.blank_sectionSeat === undefined || this.blank_sectionSeat === 0) {
       alert("Max seat can not be zero");

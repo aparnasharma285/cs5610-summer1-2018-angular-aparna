@@ -35,7 +35,7 @@
         <li class="list-group-item">
         <div class="row">
           <input [(ngModel)]="blank_sectionName" [(value)]="blank_sectionName" placeholder="Section Name" class="form-control wbdv-blank"/><br>
-          <input [(ngModel)]="blank_sectionSeat" [(value)]="blank_sectionSeat" placeholder="Max Seats" class="form-control"/>
+          <input [(ngModel)]="blank_sectionSeat" [(value)]="blank_sectionSeat" placeholder="Max Seats (only numeric value)" class="form-control"/>
           <button (click)="createNewSection()" class="btn btn-success wbdv-create-course wbdv-right-element">
             <i class="fa fa-plus"> </i></button>
           <button (click)="updateSection()" class="btn btn-success wbdv-update-course wbdv-right-element">
