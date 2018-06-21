@@ -1,8 +1,7 @@
-
-<div class="row">
+<div class="row wbdv-module-list">
   <div class="col-4">
     <ul class="list-group">
-      <li class="list-group-item active">Modules</li>
+      <li class="list-group-item wbdv-title"><b>Modules</b></li>
       <li [ngClass]="{'active': module.id == moduleId}" *ngFor="let module of modules"
           class="list-group-item wbdv">
         <a routerLink="/course/{{courseId}}/module/{{module.id}}">

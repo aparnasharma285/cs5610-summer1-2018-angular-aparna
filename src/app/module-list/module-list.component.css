@@ -1,8 +1,15 @@
 .active.wbdv {
-  background-color: red;
-  border-color: red;
+  background-color: #eff1f2;
 }
 
-.active.wbdv a {
-  color: white;
+.wbdv-title {
+  background-color: #b3b5b7;
+}
+.wbdv-module-list{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.list-group{
+  border-color: #636363;
+  border-radius: 5px;
 }
