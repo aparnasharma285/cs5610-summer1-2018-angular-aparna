@@ -38,6 +38,12 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  delete() {
+    if (confirm("Are you sure you want to delete profile?")) {
+      this.service.deleteProfile().then(() => this.goBackHome());
+    }
+  }
+
 
   goBackHome() {
     this.router.navigate(['home']);

@@ -100,7 +100,6 @@ export class AdminPageComponent implements OnInit {
         });
     }
   }
-
   updateSection() {
     if (this.blank_sectionName.length < 1 || this.blank_sectionName === undefined) {
       alert("Section Name is required");

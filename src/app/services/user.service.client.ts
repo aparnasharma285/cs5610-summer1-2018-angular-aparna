@@ -32,7 +32,7 @@ export class UserServiceClient {
 
 
   updateProfile(model) {
-    return fetch('http://localhost:4000/api/user', {
+    return fetch('http://localhost:4000/api/profile', {
       method: 'put',
       body: JSON.stringify(model),
       credentials: 'include',
@@ -53,6 +53,13 @@ export class UserServiceClient {
     });
   }
 
+  deleteProfile() {
+    return fetch('http://localhost:4000/api/profile', {
+      method: 'delete',
+      credentials: 'include'
+    });
+  }
+
   profile() {
     return fetch('http://localhost:4000/api/profile',
       {
@@ -68,7 +75,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:4000/api/user', {
+    return fetch('http://localhost:4000/api/register', {
       body: JSON.stringify(user),
       credentials: 'include',
       method: 'post',
@@ -81,7 +88,7 @@ export class UserServiceClient {
   }
 
   checkLoginStatus() {
-    return fetch('http://localhost:4000/api/status',{
+    return fetch('http://localhost:4000/api/status', {
       credentials: 'include'
     }).then(response => {
       if (response.status === 200) {

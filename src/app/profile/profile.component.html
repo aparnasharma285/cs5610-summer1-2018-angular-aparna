@@ -47,7 +47,9 @@
       <h3 class="wbdv-heading">Sections Enrolled <div class="wbdv-right-element">Count : {{sections.length}}</div></h3>
       <ul class="list-group">
         <li *ngFor="let enrollment of sections" class="list-group-item">
-          <a routerLink="/course/{{enrollment.section.courseId}}/section">{{enrollment.section.name}}</a>
+          <b>Section Name : </b><a routerLink="/course/{{enrollment.section.courseId}}/section">{{enrollment.section.name}}</a><br>
+          <div *ngIf="enrollment.grade !== undefined"><b>Grades :</b>{{enrollment.grade}}</div>
+          <div *ngIf="enrollment.grade === undefined"><b>Grades : </b>Not Available</div>
         </li>
       </ul>
 
