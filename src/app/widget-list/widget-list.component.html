@@ -16,17 +16,15 @@
     <div *ngSwitchCase="'List'">
       <div [ngSwitch]="widget.listType">
         <div *ngSwitchCase="'ORDERED'">
-          <ol class="list-group">
-            <li class="list-group-item"
-                *ngFor="let item of widget.text.split('\n')">
+          <ol>
+            <li *ngFor="let item of widget.text.split('\n')">
               {{item}}
             </li>
           </ol>
         </div>
         <div *ngSwitchCase="'UNORDERED'">
-          <ul class="list-group">
-            <li class="list-group-item"
-                *ngFor="let item of widget.text.split('\n')">
+          <ul>
+            <li *ngFor="let item of widget.text.split('\n')">
               {{item}}
             </li>
           </ul>
