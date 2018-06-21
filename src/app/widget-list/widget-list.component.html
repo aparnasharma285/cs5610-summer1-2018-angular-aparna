@@ -14,16 +14,30 @@
       <a href="{{widget.href}}">{{widget.text}}</a>
     </div>
     <div *ngSwitchCase="'List'">
-      <ul class="list-group">
-        <li class="list-group-item"
-            *ngFor="let item of widget.items.split('\n')">
-          {{item}}
-        </li>
-      </ul>
+      <div [ngSwitch]="widget.listType">
+        <div *ngSwitchCase="'ORDERED'">
+          <ol class="list-group">
+            <li class="list-group-item"
+                *ngFor="let item of widget.text.split('\n')">
+              {{item}}
+            </li>
+          </ol>
+        </div>
+        <div *ngSwitchCase="'UNORDERED'">
+          <ul class="list-group">
+            <li class="list-group-item"
+                *ngFor="let item of widget.text.split('\n')">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div *ngSwitchCase="'Paragraph'">
+      <p>{{widget.text}}</p>
     </div>
     <div *ngSwitchCase="'Image'">
+      <img src="{{widget.src}}" alt="Widget-image">
     </div>
   </div>
 </div>
