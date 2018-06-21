@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {WidgetServiceClient} from "../services/widget.service.client";
 
@@ -11,18 +11,23 @@ export class WidgetListComponent implements OnInit {
 
   constructor(private service: WidgetServiceClient,
               private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.setContext(params));
+    this.route.params.subscribe(params => this.setParams(params));
   }
 
   context;
+  topicId;
   widgets = [];
-  setContext(params) {
-    this.context = params;
-    this.loadWidgets(params.lessonId);
+
+  setParams(params) {
+    this.topicId = params['topicId'];
+    this.loadWidgets(this.topicId);
   }
-  loadWidgets(lessonId) {
-    this.service.findWidgetsForLesson(lessonId)
-      .then(widgets => this.widgets = widgets);
+
+  loadWidgets(topicId) {
+    if (topicId !== undefined) {
+      this.service.findWidgetsForTopics(topicId)
+        .then(widgets => this.widgets = widgets);
+    }
   }
 
   ngOnInit() {

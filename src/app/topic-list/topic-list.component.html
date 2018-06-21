@@ -1,0 +1,11 @@
+<div className='row'>
+  <ul class="nav nav-pills">
+    <li *ngFor="let topic of topics" class="nav-item">
+      <span class="btn btn-dark wbdv-topics"
+         routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">
+         {{topic.title}}
+         </span>
+    </li>
+  </ul>
+</div>
+<app-widget-list></app-widget-list>
